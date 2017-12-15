@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import andrewZhou.Sidewalk;
+import andrewZhou.Dog;
 import guiTeacher.GUIApplication;
 import guiTeacher.components.*;
 import guiTeacher.interfaces.KeyedComponent;
@@ -28,7 +28,7 @@ public class Sampler extends GUIApplication {
 		// TODO Auto-generated constructor stub
 	}
 	public static void main(String[] args){
-		Sampler sample = new Sampler(800, 550);
+		Sampler sample = new Sampler(1920, 1080);
 		Thread go = new Thread(sample);
 		go.start();
 	}
@@ -120,7 +120,7 @@ public class Sampler extends GUIApplication {
 			}); 
 			viewObjects.add(cb);
 			
-			viewObjects.add(new Sidewalk());
+			viewObjects.add(new Dog());
 		}
 		
 		public void mouseDragged(MouseEvent m) {
