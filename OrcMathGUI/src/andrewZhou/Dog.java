@@ -10,11 +10,11 @@ public class Dog extends /*Animated*/Component {
 
 	int weight;
 	int age;
-	int gender;
+	String gender;
 	String breed;
 	String profilePic;
 	
-	public Dog(int weight, int age, int gender, String breed) {
+	public Dog(int weight, int age, String gender, String breed) {
 		super(40, 40, 435, 234);
 		this.weight = weight;
 		this.age = age;
