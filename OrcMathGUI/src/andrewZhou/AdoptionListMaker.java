@@ -20,49 +20,30 @@ public class AdoptionListMaker {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		fw = new FileLoadingConsole();
-		
 		
 		AdoptionListMaker a= new AdoptionListMaker();
 		System.out.println(a.getCsvContent());
 		
 		String input;
+		boolean making = false;
 		
-		boolean making = true;
+		System.out.println("Would you like to load a file?");
+		input = in.nextLine();
+		if(input.equalsIgnoreCase("yes")) {
+			
+		}else {
+			making = true;
+		}
+		
 		while(making) {
 			int weight = -1;
 			int age = -1;
 			String gender = "-1";
 			String breed = "Mutt";
+			
 			weight = askForInt("How heavy is your dog?");
 			age = askForInt("How old is the dog?");
 			
-			/*System.out.println("How heavy is your dog?");
-			input = in.nextLine();
-			if(input != "" && Integer.parseInt(input) > 0) {
-				System.out.println("Good");
-				weight = Integer.parseInt(input);
-			}else {
-				System.out.println("Bad");
-			}
-			
-			System.out.println("How old is the dog?");
-			input = in.nextLine();
-			if(input != "" && Integer.parseInt(input) > 0) {
-				System.out.println("Good");
-				age = Integer.parseInt(input);
-			}else {
-				System.out.println("Bad");
-			}
-			
-			System.out.println("Gender? If boy, enter 1, if girl enter 0");
-			input = in.nextLine();
-			if(input != "" && (Integer.parseInt(input) == 0 || Integer.parseInt(input) == 1)) {
-				System.out.println("Good");
-				gender = Integer.parseInt(input);
-			}else {
-				System.out.println("Bad");
-			}*/
 			System.out.println("Gender?");
 			input = in.nextLine();
 			gender = input;
@@ -74,8 +55,8 @@ public class AdoptionListMaker {
 			System.out.println(a.getCsvContent());
 			
 			System.out.println("Save it as a file");
-			
-			s.testSaveContent(in.nextLine());
+			input = in.nextLine();
+			a.testSaveContent(input);
 		}
 		
 	}
@@ -84,26 +65,22 @@ public class AdoptionListMaker {
 		this.list.add(a);
 	}
 	
-	 static void testSaveContent(String fileName) {
-
-	 try{    
-
-	 FileWriter fw=new FileWriter(fileName);    
-
-	 fw.write("This file was created programmatically.");    
-
-	 fw.close();    
-
-	 System.out.println("Success! File \""+fileName+"\" saved!");
-
-	 }catch(IOException e){
-
-	 System.out.println("An IOException was thrown. \nCheck to see that the directory where you tried to save the file actually exists.");
-
-	 }
-
-	     
-
+	public void testSaveContent(String fileName) {
+		 try{    
+	
+		 FileWriter fw=new FileWriter(fileName);    
+	
+		 fw.write(this.getCsvContent());    
+	
+		 fw.close();    
+	
+		 System.out.println("Success! File \""+fileName+"\" saved!");
+	
+		 }catch(IOException e){
+	
+		 System.out.println("An IOException was thrown. \nCheck to see that the directory where you tried to save the file actually exists.");
+	
+		 }
 	 }
 	
 	public static int askForInt(String question) {
@@ -116,6 +93,32 @@ public class AdoptionListMaker {
 			
 		}
 		return Integer.parseInt(input);
+		/*System.out.println("How heavy is your dog?");
+		input = in.nextLine();
+		if(input != "" && Integer.parseInt(input) > 0) {
+			System.out.println("Good");
+			weight = Integer.parseInt(input);
+		}else {
+			System.out.println("Bad");
+		}
+		
+		System.out.println("How old is the dog?");
+		input = in.nextLine();
+		if(input != "" && Integer.parseInt(input) > 0) {
+			System.out.println("Good");
+			age = Integer.parseInt(input);
+		}else {
+			System.out.println("Bad");
+		}
+		
+		System.out.println("Gender? If boy, enter 1, if girl enter 0");
+		input = in.nextLine();
+		if(input != "" && (Integer.parseInt(input) == 0 || Integer.parseInt(input) == 1)) {
+			System.out.println("Good");
+			gender = Integer.parseInt(input);
+		}else {
+			System.out.println("Bad");
+		}*/
 	}
 
 	public String getCsvContent(){
