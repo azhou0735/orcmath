@@ -1,9 +1,14 @@
 package andrewZhou;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class AdoptionListMaker {
@@ -13,33 +18,62 @@ public class AdoptionListMaker {
 	
 	public AdoptionListMaker() {
 		list = new ArrayList<Dog>();
-		list.add(new Dog(60, 2, "1", "Huskey"));
+		/*list.add(new Dog(60, 2, "1", "Huskey"));
 		list.add(new Dog(4000, 4, "1", "Clifford"));
-		list.add(new Dog(10, 7, "1", "Chihuahua"));
+		list.add(new Dog(10, 7, "1", "Chihuahua"));*/
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		AdoptionListMaker a= new AdoptionListMaker();
-		System.out.println(a.getCsvContent());
+		//AdoptionListMaker a= new AdoptionListMaker();
+		//System.out.println(a.getCsvContent());
 		
 		String input;
 		boolean making = false;
+		AdoptionListMaker a = new AdoptionListMaker();
 		
 		System.out.println("Would you like to load a file?");
 		input = in.nextLine();
 		if(input.equalsIgnoreCase("yes")) {
-			
+			System.out.println("What's the file name?");
+			boolean looking = true;
+			while(looking) {
+				try {
+					input=in.nextLine();
+					FileReader fileReader = new FileReader(new File(input));
+					List<String> content = new ArrayList<String>();
+					String line = "";
+
+					 BufferedReader br = new BufferedReader(fileReader);
+					 while ((line = br.readLine()) != null) {
+						 content.add(line);
+						 }
+					 for(String i: content) {
+						 List<String> temp = Arrays.asList(i.split(","));
+						 a.addDog(new Dog(Integer.parseInt(temp.get(0)), Integer.parseInt(temp.get(1)), temp.get(2), temp.get(3)));
+					 }
+					 System.out.println("Would you like to add on to the list?");
+					 input = in.nextLine();
+					 if(input.equalsIgnoreCase("yes")) {
+						 looking = false;
+						 making = true;
+					 }else {
+						 looking = false;
+					 }
+				}catch(IOException e) {
+					System.out.println("The file name you specified does not exist.");
+				}
+			}
 		}else {
 			making = true;
 		}
 		
 		while(making) {
-			int weight = -1;
-			int age = -1;
-			String gender = "-1";
-			String breed = "Mutt";
+			int weight;
+			int age;
+			String gender;
+			String breed;
 			
 			weight = askForInt("How heavy is your dog?");
 			age = askForInt("How old is the dog?");
@@ -54,10 +88,18 @@ public class AdoptionListMaker {
 			a.addDog(new Dog(weight,age,gender,breed));
 			System.out.println(a.getCsvContent());
 			
-			System.out.println("Save it as a file");
+			System.out.println("Add more?");
+			input = in.nextLine();
+			if(input.equalsIgnoreCase("yes")) {
+			}else {
+				making = false;
+			}
+
+			System.out.println("Save the file");
 			input = in.nextLine();
 			a.testSaveContent(input);
 		}
+		
 		
 	}
 	
