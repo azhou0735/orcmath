@@ -67,19 +67,12 @@ public class AdoptionListMaker {
 	
 	public void testSaveContent(String fileName) {
 		 try{    
-	
 		 FileWriter fw=new FileWriter(fileName);    
-	
 		 fw.write(this.getCsvContent());    
-	
 		 fw.close();    
-	
 		 System.out.println("Success! File \""+fileName+"\" saved!");
-	
 		 }catch(IOException e){
-	
 		 System.out.println("An IOException was thrown. \nCheck to see that the directory where you tried to save the file actually exists.");
-	
 		 }
 	 }
 	
