@@ -38,7 +38,7 @@ public class CatalogScreen extends FullFunctionScreen{
 		viewObjects.add(gender);
 		breed = new TextField(40,280,200,40,"Enter breed","Breed");
 		viewObjects.add(breed);
-		b = new Button(40, 320, w, h, text, action)
+		b = new Button(40, 320, 100, 20, "Enter", action)
 	}
 
 }
