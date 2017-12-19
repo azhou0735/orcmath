@@ -72,11 +72,11 @@ public class CatalogMaker {
 	}
 
 	private int getIntegerInput() {
-		String text = in.nextLine();
 		int value = 0;
 		boolean valid = false;
 		while(!valid){
 			try{
+				String text = in.nextLine();
 				value = Integer.parseInt(text);
 				valid = true;
 			}catch(NumberFormatException nfe){
