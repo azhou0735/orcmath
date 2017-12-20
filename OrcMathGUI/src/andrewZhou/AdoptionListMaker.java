@@ -75,8 +75,8 @@ public class AdoptionListMaker {
 			String gender;
 			String breed;
 			
-			weight = askForInt("How heavy is your dog?");
-			age = askForInt("How old is the dog?");
+			weight = askForIntWithInput("How heavy is your dog?");
+			age = askForIntWithInput("How old is the dog?");
 			
 			System.out.println("Gender?");
 			input = in.nextLine();
@@ -112,13 +112,13 @@ public class AdoptionListMaker {
 		 FileWriter fw=new FileWriter(fileName);    
 		 fw.write(this.getCsvContent());    
 		 fw.close();    
-		 System.out.println("Success! File \""+fileName+"\" saved!");
+		 System.out.println("Success! File \""+fileName+".csv\" saved!");
 		 }catch(IOException e){
 		 System.out.println("An IOException was thrown. \nCheck to see that the directory where you tried to save the file actually exists.");
 		 }
 	 }
 	
-	public static int askForInt(String question) {
+	public static int askForIntWithInput(String question) {
 		boolean properAnswer = false;
 		String input = "1";
 		while(!properAnswer) {
@@ -128,6 +128,7 @@ public class AdoptionListMaker {
 			
 		}
 		return Integer.parseInt(input);
+	}
 		/*System.out.println("How heavy is your dog?");
 		input = in.nextLine();
 		if(input != "" && Integer.parseInt(input) > 0) {
@@ -154,7 +155,6 @@ public class AdoptionListMaker {
 		}else {
 			System.out.println("Bad");
 		}*/
-	}
 
 	public String getCsvContent(){
 		String data = "";
