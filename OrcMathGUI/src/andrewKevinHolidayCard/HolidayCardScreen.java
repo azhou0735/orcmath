@@ -67,5 +67,4 @@ public class HolidayCardScreen  extends FullFunctionScreen implements FileReques
 	protected void nextScreen() {
 		//initAllObjects();
 		HolidayCardMaker.sample.setScreen(HolidayCardMaker.sample.s2);
-	}
-}
+		}}
