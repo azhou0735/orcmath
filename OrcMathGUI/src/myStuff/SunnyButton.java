@@ -9,7 +9,7 @@ import guiTeacher.components.Button;
 public class SunnyButton extends Button implements ButtonInterfaceAndrew{
 
 	public SunnyButton(int x, int y, int w, int h, String text, Action action) {
-		super(x, y, w, h, text, action);
+		super(x, y, w, h, "", null);
 		// TODO Auto-generated constructor stub
 	}
 
