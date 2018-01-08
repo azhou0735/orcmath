@@ -67,7 +67,7 @@ public class SimonScreenAndrew extends ClickableScreen implements Runnable {
 	
 	
 	public void playSequence() {
-		ButtonInterfaceAndrew b;
+		ButtonInterfaceAndrew b = buttons[1];
 		for(MoveInterfaceAndrew a:moves) {
 			if(b!=null) {
 				b.dim();
@@ -176,7 +176,15 @@ public class SimonScreenAndrew extends ClickableScreen implements Runnable {
 	Placeholder until partner finishes implementation of ButtonInterface
 	*/
 	private ButtonInterfaceAndrew getAButton() {
-	return null;
+		
+	return new SunnyButton(0, 0, 50, 50, "", new Action() {
+		
+		@Override
+		public void act() {
+			// TODO Auto-generated method stub
+			
+		}
+	});
 	}
 
 	public static int setXAroundCircle(int i, int n, int radius) {
