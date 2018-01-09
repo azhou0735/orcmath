@@ -11,6 +11,11 @@ import guiTeacher.userInterfaces.ClickableScreen;
 
 public class SimonScreenAndrew extends ClickableScreen implements Runnable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3873286427185069277L;
+	
 	private ProgressInterfaceAndrew progress;
 	private ArrayList<MoveInterfaceAndrew> moves;
 	private TextLabel label;
@@ -26,6 +31,9 @@ public class SimonScreenAndrew extends ClickableScreen implements Runnable {
 	public SimonScreenAndrew(int width, int height) {
 		super(width, height);
 		// TODO Auto-generated constructor stub
+		//
+		Thread screen = new Thread(this);
+		screen.start();
 	}
 
 	@Override
@@ -67,7 +75,7 @@ public class SimonScreenAndrew extends ClickableScreen implements Runnable {
 	
 	
 	public void playSequence() {
-		ButtonInterfaceAndrew b = buttons[1];
+		ButtonInterfaceAndrew b = null;
 		for(MoveInterfaceAndrew a:moves) {
 			if(b!=null) {
 				b.dim();
@@ -119,12 +127,12 @@ public class SimonScreenAndrew extends ClickableScreen implements Runnable {
 	Placeholder until partner finishes implementation of MoveInterface
 	*/
 	private MoveInterfaceAndrew getMove(int bIndex) {
-	    return null;
+		return new MoveAndrew(buttons[bIndex]);
 	}
 
 	private ProgressInterfaceAndrew getProgress() {
 		// TODO Auto-generated method stub
-		return null;
+		return new ProgressAndrew(200,200,400,400);
 	}
 
 	private void addButtons() {
@@ -177,14 +185,7 @@ public class SimonScreenAndrew extends ClickableScreen implements Runnable {
 	*/
 	private ButtonInterfaceAndrew getAButton() {
 		
-	return new SunnyButton(0, 0, 50, 50, "", new Action() {
-		
-		@Override
-		public void act() {
-			// TODO Auto-generated method stub
-			
-		}
-	});
+		return new SunnyButton(0, 0, 50, 50, "",  null);
 	}
 
 	public static int setXAroundCircle(int i, int n, int radius) {
@@ -192,9 +193,5 @@ public class SimonScreenAndrew extends ClickableScreen implements Runnable {
 	}
 	public static int setYAroundCircle(int i, int n, int radius) {
 		return (int)(Math.sin(((Math.PI*2)/n)*i)*radius);
-	}
-	
-	public static void main(String[] args) {
-		System.out.println(setXAroundCircle(2,7,50));
 	}
 }
