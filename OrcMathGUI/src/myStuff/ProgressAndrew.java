@@ -1,119 +1,53 @@
 package myStuff;
 
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
-public class ProgressAndrew implements ProgressInterfaceAndrew {
+import guiTeacher.components.Component;
 
+public class ProgressAndrew extends Component implements ProgressInterfaceAndrew {
+
+	private int round;
+	private int sequenceSize;
+	private boolean gameOver;
+	private int x;
+	private int y;
+	
 	public ProgressAndrew(int x, int y, int w, int h) {
+		super(x, y, w, h);
+		this.x = x;
+		this.y = y;
 		// TODO Auto-generated constructor stub
 	}
-
-	@Override
-	public BufferedImage getImage() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getX() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getY() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setX(int x) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setY(int y) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public int getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public boolean isAnimated() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void setVisible(boolean b) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public boolean isVisible() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public float getAlpha() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setAlpha(float f) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void unhoverAction() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void hoverAction() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
+	
 	public void gameOver() {
-		// TODO Auto-generated method stub
-
+		gameOver = true;
 	}
 
 	@Override
-	public void setRound(int a) {
+	public void update(Graphics2D g) {
 		// TODO Auto-generated method stub
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		if(gameOver) {
+			g.drawString("Game Over", x, y);
+		}else {
 
+			g.drawString("Level: "+sequenceSize, x, y);
+			g.drawString("Round: "+round, x+30, y+30);
+		}
 	}
 
 	@Override
-	public void setSequenceSize(int a) {
+	public void setRound(int roundNumber) {
 		// TODO Auto-generated method stub
-
+		round = roundNumber;
 	}
 
+	@Override
+	public void setSequenceSize(int size) {
+		// TODO Auto-generated method stub
+		sequenceSize = size;
+	}
 }

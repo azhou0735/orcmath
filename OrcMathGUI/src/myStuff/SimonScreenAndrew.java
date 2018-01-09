@@ -93,9 +93,10 @@ public class SimonScreenAndrew extends ClickableScreen implements Runnable {
 						
 					}
 				});
+
+				b.dim();
 			}
 		}
-		b.dim();
 	}
 	
 	@Override
@@ -139,11 +140,12 @@ public class SimonScreenAndrew extends ClickableScreen implements Runnable {
 		int numberOfButtons = 7;
 		buttons = new ButtonInterfaceAndrew[numberOfButtons];
 		Color[] colors = new Color[numberOfButtons];
-		colors[0] = Color.BLUE; colors[1] = Color.RED; colors[2] = Color.GREEN; colors[3] = Color.CYAN;
-		colors[4] = Color.YELLOW; colors[5] = Color.ORANGE; colors[6] = Color.MAGENTA;
+		colors[0] = new Color(0,0,205); colors[1] = new Color(0,205,0); colors[2] = new Color(205,0,0); colors[3] = new Color(205,205,0);
+		colors[4] = new Color(0,205,205); colors[5] = new Color(205,0,205); colors[6] = new Color(100,100,100);
 		
 		for(int i = 0; i < numberOfButtons; i++) {
 			final ButtonInterfaceAndrew b = getAButton();
+			System.out.println(colors[i]);
 			b.setColor(colors[i]);
 			//center of circle is 200,200
 			b.setX(200 + setXAroundCircle(i, numberOfButtons, 50));
@@ -185,7 +187,7 @@ public class SimonScreenAndrew extends ClickableScreen implements Runnable {
 	*/
 	private ButtonInterfaceAndrew getAButton() {
 		
-		return new SunnyButton(0, 0, 50, 50, "",  null);
+		return new ButtonAndrew(0, 0, 50, 50, null);
 	}
 
 	public static int setXAroundCircle(int i, int n, int radius) {
