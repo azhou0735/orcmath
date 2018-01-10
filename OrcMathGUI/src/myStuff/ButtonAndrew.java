@@ -19,46 +19,54 @@ public class ButtonAndrew extends Button implements ButtonInterfaceAndrew {
 	public ButtonAndrew(int x, int y, int w, int h, Action action) {
 		super(x, y, w, h, "", action);
 		// TODO Auto-generated constructor stub
+		update();
 	}
 	@Override
 	public void setX(int x) {
 		// TODO Auto-generated method stub
 		this.x = x;
+		update();
 	}
 
 	@Override
 	public void setY(int y) {
 		// TODO Auto-generated method stub
 		this.y = y;
+		update();
 	}
 	@Override
 	public void setAction(Action a) {
 		// TODO Auto-generated method stub
 		this.action = a;
+		update();
 	}
 
 	@Override
 	public void highlight() {
 		// TODO Auto-generated method stub
 		Color currentColor = bColor;
-		Utilities.lighten(currentColor, 50);
+		setColor(Utilities.lighten(currentColor, 50));
+		update();
 	}
 
 	@Override
 	public void setColor(Color color) {
 		// TODO Auto-generated method stub
 		this.bColor = color;
+		update();
 	}
 
 	public void act() {
 		action.act();
+		update();
 	}
 	
 	@Override
 	public void dim() {
 		// TODO Auto-generated method stub
 		Color currentColor = bColor;
-		Utilities.lighten(currentColor, -50);
+		setColor(Utilities.lighten(currentColor, -50));
+		update();
 	}
 	
 	public void drawButton(Graphics2D g, boolean hover) {
