@@ -1,6 +1,7 @@
 package myStuff;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 
 import guiTeacher.components.*;
 import guiTeacher.interfaces.*;

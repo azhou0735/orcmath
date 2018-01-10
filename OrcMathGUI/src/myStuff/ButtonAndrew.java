@@ -41,7 +41,7 @@ public class ButtonAndrew extends Button implements ButtonInterfaceAndrew {
 	public void highlight() {
 		// TODO Auto-generated method stub
 		Color currentColor = bColor;
-		//Utilities.lighten(currentColor, 50);
+		Utilities.lighten(currentColor, 50);
 	}
 
 	@Override
@@ -50,14 +50,19 @@ public class ButtonAndrew extends Button implements ButtonInterfaceAndrew {
 		this.bColor = color;
 	}
 
+	public void act() {
+		action.act();
+	}
+	
 	@Override
 	public void dim() {
 		// TODO Auto-generated method stub
 		Color currentColor = bColor;
-		//Utilities.lighten(currentColor, -50);
+		Utilities.lighten(currentColor, -50);
 	}
 	
 	public void drawButton(Graphics2D g, boolean hover) {
+		System.out.println("Drawing");
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setColor(bColor);

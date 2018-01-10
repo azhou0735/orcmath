@@ -1,6 +1,8 @@
 package myStuff;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,12 +40,13 @@ public class SimonScreenAndrew extends ClickableScreen implements Runnable {
 
 	@Override
 	public void run() {
+		System.out.println("1");
 		label.setText("");
 		nextRound();
 
 	}
 
-	private void nextRound() {
+	public void nextRound() {
 		acceptingInput = false;
 		roundNumber ++;
 		moves.add(randomMove());
@@ -75,6 +78,7 @@ public class SimonScreenAndrew extends ClickableScreen implements Runnable {
 	
 	
 	public void playSequence() {
+		System.out.println("3");
 		ButtonInterfaceAndrew b = null;
 		for(MoveInterfaceAndrew a:moves) {
 			if(b!=null) {
@@ -93,7 +97,7 @@ public class SimonScreenAndrew extends ClickableScreen implements Runnable {
 						
 					}
 				});
-
+				c.run();
 				b.dim();
 			}
 		}
@@ -101,23 +105,30 @@ public class SimonScreenAndrew extends ClickableScreen implements Runnable {
 	
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
+		System.out.println("2");
+		buttons = new ButtonInterfaceAndrew[7];
 		addButtons();
 		for(ButtonInterfaceAndrew b: buttons){ 
 		    viewObjects.add(b); 
 		}
-		progress = getProgress();
-		label = new TextLabel(130,230,300,40,"Let's play Simon!");
-		moves = new ArrayList<MoveInterfaceAndrew>();
+		
+		label = new TextLabel(100,230,80,50,"Let's play Simon!");
+		viewObjects.add(label);
 		//add 2 moves to start
+		
+
+		progress = new ProgressAndrew(20, 20, 80, 50);
+		
 		lastSelectedButton = -1;
+		moves = new ArrayList<MoveInterfaceAndrew>();
 		moves.add(randomMove());
 		moves.add(randomMove());
 		roundNumber = 0;
+		
 		viewObjects.add(progress);
-		viewObjects.add(label);
 	}
 
-	private MoveInterfaceAndrew randomMove() {
+	public MoveInterfaceAndrew randomMove() {
 		int a = lastSelectedButton;
 		while(a == lastSelectedButton) {
 			a = (int)(Math.random()*buttons.length);
@@ -127,29 +138,26 @@ public class SimonScreenAndrew extends ClickableScreen implements Runnable {
 	/**
 	Placeholder until partner finishes implementation of MoveInterface
 	*/
-	private MoveInterfaceAndrew getMove(int bIndex) {
+	public MoveInterfaceAndrew getMove(int bIndex) {
 		return new MoveAndrew(buttons[bIndex]);
 	}
 
-	private ProgressInterfaceAndrew getProgress() {
-		// TODO Auto-generated method stub
-		return new ProgressAndrew(200,200,400,400);
-	}
-
-	private void addButtons() {
+	public void addButtons() {
+		System.out.println("4");
 		int numberOfButtons = 7;
-		buttons = new ButtonInterfaceAndrew[numberOfButtons];
 		Color[] colors = new Color[numberOfButtons];
 		colors[0] = new Color(0,0,205); colors[1] = new Color(0,205,0); colors[2] = new Color(205,0,0); colors[3] = new Color(205,205,0);
 		colors[4] = new Color(0,205,205); colors[5] = new Color(205,0,205); colors[6] = new Color(100,100,100);
 		
 		for(int i = 0; i < numberOfButtons; i++) {
-			final ButtonInterfaceAndrew b = getAButton();
-			System.out.println(colors[i]);
+			ButtonInterfaceAndrew b = new ButtonAndrew(i*150+50, 400, 50, 50, null);
+			//System.out.println(colors[i]);
 			b.setColor(colors[i]);
 			//center of circle is 200,200
-			b.setX(200 + setXAroundCircle(i, numberOfButtons, 50));
-			b.setY(200 + setYAroundCircle(i, numberOfButtons, 50));
+			//b.setX(200 + setXAroundCircle(i, numberOfButtons, 50));
+			//b.setY(200 + setYAroundCircle(i, numberOfButtons, 50));
+			b.setX(i*50+50);
+			b.setY(150);
 			b.setAction(new Action() {
 				public void act() {
 					if(acceptingInput) {
@@ -179,14 +187,14 @@ public class SimonScreenAndrew extends ClickableScreen implements Runnable {
 					}
 				}
 			});
+			System.out.println("Button");
 			buttons[i] = b;
 		}
 	}
 	/**
 	Placeholder until partner finishes implementation of ButtonInterface
 	*/
-	private ButtonInterfaceAndrew getAButton() {
-		
+	public ButtonInterfaceAndrew getAButton() {
 		return new ButtonAndrew(0, 0, 50, 50, null);
 	}
 
@@ -197,3 +205,4 @@ public class SimonScreenAndrew extends ClickableScreen implements Runnable {
 		return (int)(Math.sin(((Math.PI*2)/n)*i)*radius);
 	}
 }
+//System.out.println("");

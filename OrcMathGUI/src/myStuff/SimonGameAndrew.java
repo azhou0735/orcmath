@@ -10,7 +10,7 @@ public class SimonGameAndrew extends GUIApplication  {
 	private static final long serialVersionUID = 913169627728865089L;
 	
 	public static void main(String[] args) {
-		SimonGameAndrew a = new SimonGameAndrew(500,800);
+		SimonGameAndrew a = new SimonGameAndrew(1000,800);
 		Thread r = new Thread(a);
 		r.run();
 	}
